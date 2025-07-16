@@ -1,0 +1,31 @@
+<!-- src/main/resources/templates/login.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登入系統</title>
+</head>
+<body>
+<h2>請登入</h2>
+
+<div th:if="${param.logout}">
+    ✅ 您已成功登出。
+</div>
+<div th:if="${param.expired}">
+    ⚠️ 您的帳號已在其他地方登入，本裝置已登出。
+</div>
+<div th:if="${param.error}">
+    ❌ 帳號或密碼錯誤，請重試。
+</div>
+
+<form th:action="@{/login}" method="post">
+    <label for="username">帳號：</label>
+    <input type="text" id="username" name="username" required />
+    <br/>
+    <label for="password">密碼：</label>
+    <input type="password" id="password" name="password" required />
+    <br/>
+    <button type="submit">登入</button>
+</form>
+</body>
+</html>
