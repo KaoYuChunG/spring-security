@@ -1,0 +1,45 @@
+
+spring:
+  application:
+    name: security-social-login
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - profile
+              - email
+          github:
+            client-id: ${GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_CLIENT_SECRET}
+            scope: user:email
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+#          facebook:
+#            client-id: your-facebook-client-id
+#            client-secret: your-facebook-client-secret
+#            scope: public_profile,email
+#            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        provider:
+          github:
+            authorization-uri: https://github.com/login/oauth/authorize
+            token-uri: https://github.com/login/oauth/access_token
+            user-info-uri: https://api.github.com/user
+            user-name-attribute: login
+#          facebook:
+#            authorization-uri: https://www.facebook.com/v19.0/dialog/oauth
+#            token-uri: https://graph.facebook.com/v19.0/oauth/access_token
+#            user-info-uri: https://graph.facebook.com/me?fields=id,name,email,picture
+
+jwt:
+  secret: your-256-bit-secret-here-your-256-bit-secret-here
+  expiration: 3600000 # 1 hour in milliseconds
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG

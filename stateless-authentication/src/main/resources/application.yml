@@ -1,0 +1,21 @@
+
+spring:
+  application:
+    name: stateless-authentication
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+
+jwt:
+  access-token-secret: ACCESS_SECRET_KEY_256_BIT_SECRET_EXAMPLE
+  refresh-token-secret: REFRESH_SECRET_KEY_256_BIT_SECRET_EXAMPLE
+  access-token-expiration: 600000       # 10 分鐘 (ms)
+  refresh-token-expiration: 604800000   # 7 天 (ms)
